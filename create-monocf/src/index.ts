@@ -132,7 +132,7 @@ async function main() {
     console.log(chalk.green('\n✅ Project created successfully!'))
     console.log(chalk.bold('\nNext steps:'))
     console.log(`  cd ${chalk.cyan(projectName)}`)
-    console.log('  npm run dev')
+    console.log('  npm run dev my-worker')
     console.log('\nHappy coding! 🎉\n')
   } catch (error) {
     spinner.fail('Failed to create project')
