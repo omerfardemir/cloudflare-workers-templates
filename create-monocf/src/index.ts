@@ -69,7 +69,7 @@ async function main() {
 
   fs.mkdirSync(targetDir, {recursive: true})
 
-  const spinner = ora('Cloning template...').start()
+  let spinner = ora('Cloning template...').start()
 
   try {
     // Clone the repository
@@ -111,19 +111,16 @@ async function main() {
 
     // Remove the temp directory
     fs.removeSync(tempDir)
-
-    // Initialize a new git repository
-    await execa('git', ['init'])
-
-    // Create initial commit
-    await execa('git', ['add', '.'])
-    await execa('git', ['commit', '-m', 'Initial commit from create-monocf'])
+    
+    // Make absolutely sure the .git directory is removed
+    if (fs.existsSync(path.join(targetDir, '.git'))) {
+      fs.removeSync(path.join(targetDir, '.git'))
+    }
 
     spinner.succeed('Template cloned successfully!')
-
+    
     // Install dependencies
-    spinner.text = 'Installing dependencies...'
-    spinner.start()
+    spinner = ora('Installing dependencies...').start()
 
     await execa('npm', ['install'])
 
@@ -132,7 +129,7 @@ async function main() {
     console.log(chalk.green('\n✅ Project created successfully!'))
     console.log(chalk.bold('\nNext steps:'))
     console.log(`  cd ${chalk.cyan(projectName)}`)
-    console.log('  npm run dev my-worker')
+    console.log('  npm run dev')
     console.log('\nHappy coding! 🎉\n')
   } catch (error) {
     spinner.fail('Failed to create project')
