@@ -1,0 +1,40 @@
+{
+  "name": "monocf-turborepo-with-npm",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "monocf worker -c dev",
+    "deploy": "monocf worker -c deploy",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"+(workers|packages)/**/*.+(ts|tsx|js|json)\"",
+    "check-types": "turbo run check-types",
+    "check-deps": "syncpack lint",
+    "fix-deps": "syncpack fix-mismatches"
+  },
+  "dependencies": {
+    "hono": "*"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20250503.0",
+    "@turbo/gen": "2.5.3",
+    "@types/node": "22.15.12",
+    "monocf": "0.0.2",
+    "prettier": "3.5.3",
+    "syncpack": "13.0.4",
+    "turbo": "2.5.2",
+    "typescript": "5.8.3",
+    "wrangler": "4.14.0"
+  },
+  "packageManager": "npm@11.3.0",
+  "engines": {
+    "node": ">=18"
+  },
+  "workspaces": [
+    "workers/*",
+    "packages/*"
+  ],
+  "imports": {
+    "#worker-config": "./worker.config.json"
+  }
+}

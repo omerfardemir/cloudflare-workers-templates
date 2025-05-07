@@ -1,0 +1,14 @@
+{
+  "name": "@monocf/types",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./index.js",
+  "types": "./index.ts",
+  "dependencies": {
+    "typescript": "5.8.3"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "check-types": "tsc --noEmit"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@monocf/hono",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.ts",
+  "dependencies": {
+    "@hono/zod-validator": "0.4.3",
+    "@monocf/types": "*",
+    "hono": "*",
+    "hono-openapi": "0.4.8",
+    "workers-tagged-logger": "0.10.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20250503.0",
+    "@monocf/eslint-config": "*",
+    "@monocf/typescript-config": "*"
+  },
+  "scripts": {
+    "lint": "eslint",
+    "check-types": "tsc --noEmit"
+  }
+}

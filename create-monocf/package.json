@@ -1,0 +1,49 @@
+{
+  "name": "create-monocf",
+  "version": "0.1.0",
+  "description": "Create a new MonoCF monorepo project using template",
+  "type": "module",
+  "bin": {
+    "create-monocf": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --clean",
+    "dev": "tsup src/index.ts --format esm --watch",
+    "lint": "eslint . --ext ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "format": "prettier --write \"+(src)/**/*.+(ts|tsx|js|json)\""
+  },
+  "keywords": [
+    "cloudflare",
+    "workers",
+    "turborepo",
+    "monorepo",
+    "create",
+    "template"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "execa": "^8.0.1",
+    "fs-extra": "^11.2.0",
+    "ora": "^7.0.1",
+    "prompts": "^2.4.2"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.4",
+    "@types/node": "^20.10.5",
+    "@types/prompts": "^2.4.9",
+    "eslint": "^8.56.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@monocf/prettier-config",
+  "version": "0.0.0",
+  "description": "The prettier config for workers projects",
+  "main": "prettier-config.js",
+  "files": [
+    "prettier-config.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}
