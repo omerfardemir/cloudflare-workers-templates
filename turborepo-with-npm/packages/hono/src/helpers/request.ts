@@ -25,7 +25,10 @@ export interface LogDataRequest {
 /**
  * Get logdata from request
  */
-export function getRequestLogData<T extends HonoApp>(c: Context<T>, requestStartTimestamp: number): LogDataRequest {
+export function getRequestLogData<T extends HonoApp>(
+  c: Context<T>,
+  requestStartTimestamp: number,
+): LogDataRequest {
   const redactedUrl = redactUrl(c.req.url)
   return {
     url: redactedUrl.toString(),
@@ -34,7 +37,10 @@ export function getRequestLogData<T extends HonoApp>(c: Context<T>, requestStart
     routePath: c.req.routePath,
     searchParams: redactedUrl.searchParams.toString(),
     headers: JSON.stringify(Array.from(c.req.raw.headers)),
-    ip: c.req.header('cf-connecting-ip') || c.req.header('x-real-ip') || c.req.header('x-forwarded-for'),
+    ip:
+      c.req.header('cf-connecting-ip') ||
+      c.req.header('x-real-ip') ||
+      c.req.header('x-forwarded-for'),
     timestamp: new Date(requestStartTimestamp).toISOString(),
   }
 }

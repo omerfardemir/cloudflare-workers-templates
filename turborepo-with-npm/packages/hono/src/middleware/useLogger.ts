@@ -1,16 +1,14 @@
-import {Context, Next} from 'hono'
+import {Context, Next, MiddlewareHandler} from 'hono'
 import {HonoApp} from '@monocf/types'
-import {logger} from '../helpers/logger'
+import {useWorkersLogger} from 'workers-tagged-logger'
 
-export const useLogger = () => {
-  return async (c: Context<HonoApp>, next: Next) => {
-    logger.setTags({
+export function useLogger<T extends HonoApp>(): MiddlewareHandler {
+  return async (c: Context<T>, next: Next) => {
+    return useWorkersLogger(c.env.NAME, {
       url: c.req.url,
-      name: c.env.NAME,
-      release: c.env.SENTRY_RELEASE,
+      release: c.env.RELEASE,
       environment: c.env.ENVIRONMENT,
-      version: c.env.VERSION
-    })
-    return next()
+      version: c.env.VERSION,
+    })(c, next)
   }
 }

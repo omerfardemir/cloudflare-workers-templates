@@ -1,6 +1,12 @@
 import {Hono} from 'hono'
 import {App} from './context'
-import {useLogger, useDefaultCors, useNotFound, useOnError} from '@monocf/hono'
+import {
+  useLogger,
+  useDefaultCors,
+  useNotFound,
+  useOnError,
+  response,
+} from '@monocf/hono'
 import config from '#worker-config'
 
 const app = new Hono<App>()
@@ -11,7 +17,15 @@ const app = new Hono<App>()
   .notFound(useNotFound())
 
 app.get('/', (c) => {
-  return c.text(`Hello Hono!`)
+  return response(c, {
+    hello: 'world',
+  })
+})
+
+app.get('/error', (c) => {
+  return response(c, {
+    error: 'error message',
+  }, 500)
 })
 
 export default app

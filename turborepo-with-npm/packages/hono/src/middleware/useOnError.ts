@@ -8,7 +8,7 @@ import {logger} from '../helpers/logger'
 
 import type {Context} from 'hono'
 import type {ContentfulStatusCode} from 'hono/utils/http-status'
-import type {ApiError} from '../types'
+import type {ApiError} from '@monocf/types'
 import type {HonoApp} from '@monocf/types'
 
 /** Handles typical onError hooks */

@@ -1,6 +1,5 @@
 import type {Context} from 'hono'
-import type {ApiError} from '../types'
-import type {HonoApp} from '@monocf/types'
+import type {HonoApp, ApiError} from '@monocf/types'
 
 /** Handles typical notFound hooks */
 export function useNotFound<T extends HonoApp>() {
