@@ -19,7 +19,7 @@
     "@cloudflare/workers-types": "4.20250503.0",
     "@turbo/gen": "2.5.3",
     "@types/node": "22.15.12",
-    "monocf": "0.0.2",
+    "monocf": "0.0.3",
     "prettier": "3.5.3",
     "syncpack": "13.0.4",
     "turbo": "2.5.2",
