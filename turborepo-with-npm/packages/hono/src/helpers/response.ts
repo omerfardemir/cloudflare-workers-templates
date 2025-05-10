@@ -3,6 +3,9 @@ import {Context} from 'hono'
 import {ApiResponse, PaginationMeta} from '@monocf/types'
 import type {ContentfulStatusCode} from 'hono/utils/http-status'
 
+/**
+ * Helper function to send responses with API response format
+ */
 export function response<H extends HonoApp, T>(
   ctx: Context<H>,
   data: T,

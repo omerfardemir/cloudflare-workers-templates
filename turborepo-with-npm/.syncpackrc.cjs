@@ -30,6 +30,27 @@ const config = {
 			// snapTo removes it from syncpack update list, which is the main goal
 			snapTo: ['@monocf/eslint-config'],
 		},
+    {
+      label: 'pin zod for all packages',
+      dependencies: ['zod'],
+      pinVersion: '3.24.4'
+    },
+    {
+      label: 'pin hono for all packages',
+      dependencies: ['hono'],
+      pinVersion: '4.7.9'
+    },
+    {
+      label: `pin hono and its dependencies for @monocf/hono`,
+      dependencies: [
+        'hono',
+        'hono-openapi',
+        '@hono/zod-validator',
+        'workers-tagged-logger',
+      ],
+      // snapTo removes it from syncpack update list, which is the main goal
+      snapTo: ['@monocf/hono'],
+    },
 	],
 	semverGroups: [
 		{

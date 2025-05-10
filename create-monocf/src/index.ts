@@ -117,14 +117,36 @@ async function main() {
       fs.removeSync(path.join(targetDir, '.git'))
     }
 
+    const packageJsonPath = path.join(targetDir, 'package.json')
+    const packageJson = JSON.parse(
+      fs.readFileSync(packageJsonPath, 'utf8')
+    )
+    packageJson.name = projectName
+    fs.writeFileSync(
+      packageJsonPath,
+      JSON.stringify(packageJson, null, 2)
+    )
+
     spinner.succeed('Template cloned successfully!')
     
-    // Install dependencies
-    spinner = ora('Installing dependencies...').start()
+    // Ask if user wants to install dependencies
+    const { installDeps } = await prompts({
+      type: 'confirm',
+      name: 'installDeps',
+      message: 'Do you want to install dependencies now?',
+      initial: true,
+    })
 
-    await execa('npm', ['install'])
+    if (installDeps) {
+      // Install dependencies
+      spinner = ora('Installing dependencies...').start()
 
-    spinner.succeed('Dependencies installed successfully!')
+      await execa('npm', ['install'])
+
+      spinner.succeed('Dependencies installed successfully!')
+    } else {
+      console.log(chalk.yellow('\nSkipping dependency installation.'))
+    }
 
     console.log(chalk.green('\n✅ Project created successfully!'))
     console.log(chalk.bold('\nNext steps:'))

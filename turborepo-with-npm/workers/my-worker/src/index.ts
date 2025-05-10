@@ -6,6 +6,7 @@ import {
   useNotFound,
   useOnError,
   response,
+  newHTTPException,
 } from '@monocf/hono'
 import config from '#worker-config'
 
@@ -23,9 +24,7 @@ app.get('/', (c) => {
 })
 
 app.get('/error', (c) => {
-  return response(c, {
-    error: 'error message',
-  }, 500)
+  throw newHTTPException(500, 'error message')
 })
 
 export default app

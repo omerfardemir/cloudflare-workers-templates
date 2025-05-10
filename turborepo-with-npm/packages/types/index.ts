@@ -1,3 +1,6 @@
+export * from './common-schemas'
+export * from './api/api-response'
+
 /**
  * This types are copied from https://github.com/jahands/workers-monorepo-template/blob/main/packages/hono-helpers/src/types.ts
  * and modified to fit our needs
@@ -45,43 +48,3 @@ export type SharedAppContext = {
   env: SharedHonoEnv
   executionCtx: Pick<ExecutionContext, 'waitUntil'>
 }
-
-/**
- * API error response
- */
-export interface ApiError {
-  success: false
-  error: {
-    message: string
-  }
-}
-
-/**
- * API success response
- */
-export interface ApiSuccess<T> {
-  success: true
-  data: T
-}
-
-/**
- * Pagination metadata
- */
-export interface PaginationMeta {
-  page: number
-  limit: number
-  total: number
-  totalPages: number
-}
-
-/**
- * Paginated API response
- */
-export interface PaginatedResponse<T> extends ApiSuccess<T> {
-  meta: PaginationMeta
-}
-
-/**
- * API Response
- */
-export type ApiResponse<T> = ApiError | ApiSuccess<T> | PaginatedResponse<T>

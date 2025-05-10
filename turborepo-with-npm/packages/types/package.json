@@ -7,6 +7,9 @@
   "dependencies": {
     "typescript": "5.8.3"
   },
+  "devDependencies": {
+    "@cloudflare/workers-types": "4.20250503.0"
+  },
   "scripts": {
     "lint": "eslint",
     "check-types": "tsc --noEmit"
