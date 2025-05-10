@@ -6,9 +6,6 @@ import type {ContentfulStatusCode} from 'hono/utils/http-status'
  *
  * **Example:** `throw newHTTPException(401, 'unauthorized')`
  */
-export function newHTTPException(
-  status: ContentfulStatusCode,
-  message: string,
-): HTTPException {
+export function newHTTPException(status: ContentfulStatusCode, message: string): HTTPException {
   return new HTTPException(status, {message})
 }

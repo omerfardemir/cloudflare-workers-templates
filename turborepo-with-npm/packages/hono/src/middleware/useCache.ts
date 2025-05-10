@@ -57,16 +57,12 @@ interface useCacheByStatusOptions {
   force: boolean
 }
 /** Caches responses based on status */
-export function useCacheByStatus<T extends HonoApp>(
-  options: useCacheByStatusOptions,
-) {
+export function useCacheByStatus<T extends HonoApp>(options: useCacheByStatusOptions) {
   return async (ctx: Context<T>, next: Next): Promise<Response | void> => {
     const c = ctx as unknown as Context<HonoApp>
 
     const cache = await caches.open('default')
-    const reqMatcher = options.force
-      ? new Request(c.req.url, {method: c.req.method})
-      : c.req.raw
+    const reqMatcher = options.force ? new Request(c.req.url, {method: c.req.method}) : c.req.raw
     const cachedRes = await cache.match(reqMatcher)
     if (cachedRes) {
       return c.newResponse(cachedRes.body, cachedRes)
@@ -75,10 +71,7 @@ export function useCacheByStatus<T extends HonoApp>(
     const opts = options.rules.find((o) => o.status === c.res.status)
     if (opts) {
       const clonedRes = c.res.clone()
-      clonedRes.headers.set(
-        'Cloudflare-CDN-Cache-Control',
-        `max-age=${opts.ttl}`,
-      )
+      clonedRes.headers.set('Cloudflare-CDN-Cache-Control', `max-age=${opts.ttl}`)
       c.executionCtx.waitUntil(cache.put(reqMatcher, clonedRes))
     }
   }

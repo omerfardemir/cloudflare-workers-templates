@@ -23,6 +23,7 @@ app.get('/', (c) => {
   })
 })
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.get('/error', (c) => {
   throw newHTTPException(500, 'error message')
 })
