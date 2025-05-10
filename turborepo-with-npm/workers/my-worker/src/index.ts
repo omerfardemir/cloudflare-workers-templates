@@ -19,7 +19,7 @@ const app = new Hono<App>()
 
 app.get('/', (c) => {
   return response(c, {
-    hello: 'world',
+    hello: c.env.USER,
   })
 })
 

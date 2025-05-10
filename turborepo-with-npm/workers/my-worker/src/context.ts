@@ -1,7 +1,7 @@
 import type {SharedHonoEnv, SharedHonoVariables, HonoApp} from '@monocf/types'
 
 export type Env = SharedHonoEnv & {
-  // add additional Bindings here
+  USER: string
 }
 
 /** Variables can be extended */

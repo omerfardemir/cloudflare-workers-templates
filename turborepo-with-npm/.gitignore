@@ -37,6 +37,11 @@ yarn-error.log*
 .DS_Store
 *.pem
 
+# wrangler
 .wrangler
 .temp.base.wrangler.jsonc
 .temp.wrangler.jsonc
+
+# Variables
+*.env
+.dev.*
