@@ -7,6 +7,7 @@
   "dependencies": {
     "@monocf/types": "*",
     "hono": "4.7.9",
+    "hono-openapi": "0.4.8",
     "@hono/zod-validator": "0.4.3",
     "workers-tagged-logger": "0.10.0"
   },

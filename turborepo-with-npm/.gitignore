@@ -39,9 +39,11 @@ yarn-error.log*
 
 # wrangler
 .wrangler
+.monocf
 .temp.base.wrangler.jsonc
 .temp.wrangler.jsonc
 
 # Variables
 *.env
 .dev.*
+.temp.dev.*
