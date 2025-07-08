@@ -1,0 +1,67 @@
+import { Env } from './context'
+import { WorkerEntrypoint } from 'cloudflare:workers'
+
+/**
+ * You can use this interface to define your service to another worker environment
+ * @example
+ * ```typescript
+ * export type Env = SharedHonoEnv & {
+ *   EXAMPLE_SERVICE: ExampleService
+ * }
+ * ```
+ */
+export interface ExampleService {
+  search(query: string): Promise<any>
+}
+
+export default class ExampleServiceWorker
+  extends WorkerEntrypoint
+  implements ExampleService
+{
+  private CfEnv: Env = this.env as Env
+
+  /**
+   * Example search method that simulates a service call.
+   * Replace with actual implementation.
+   */
+  async search(query: string): Promise<any> {
+    try {
+      // Simulate a service call
+      console.log(
+        `This is RPC worker ${this.CfEnv.NAME}. Searching with query: ${query}`,
+      )
+
+      const results = await this.simulateServiceCall(query) // Replace with actual service logic
+
+      return results
+    } catch (error) {
+      return {
+        success: false,
+        issues: [(error as Error).message],
+      }
+    }
+  }
+
+  /**
+   * Simulates a service call. Replace with actual service logic.
+   */
+  private async simulateServiceCall(query: string): Promise<any> {
+    // Simulate a delay for the service call
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+
+    // Return a mock result
+    return {
+      success: true,
+      data: [{ id: 1, name: `Result for ${query}` }],
+    }
+  }
+
+  /**
+   * Return a 404 response for fetch requests.
+   * Cloudflare Workers require a fetch handler,
+   * even if it is not used.
+   */
+  async fetch() {
+    return new Response(null, { status: 404 })
+  }
+}
