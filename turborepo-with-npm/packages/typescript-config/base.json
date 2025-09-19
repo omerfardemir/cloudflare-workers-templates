@@ -17,7 +17,7 @@
     "skipLibCheck": true,
     "jsxImportSource": "hono/jsx",
     "paths": {
-      "#worker-config": ["../../worker.config.json"]
+      "#worker-config": ["../../monocf.config.json"]
     }
   }
 }

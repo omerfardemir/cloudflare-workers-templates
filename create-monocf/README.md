@@ -41,7 +41,7 @@ The generated project includes:
 - A main worker structure in `workers/my-worker`
 - Turborepo generator configuration in `turbo/generators/config.ts`
 - Template files for generating new workers in `turbo/generators/template`
-- Workers depend on a root `worker.config.json` file for configuration
+- Workers depend on a root `monocf.config.json` file for configuration
 - Uses Hono framework for building Cloudflare Workers
 
 ## Development

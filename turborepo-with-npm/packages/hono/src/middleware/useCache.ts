@@ -3,9 +3,9 @@
  * and modified to fit our needs
  */
 
-import type {Context, Next} from 'hono'
-import type {StatusCode} from 'hono/utils/http-status'
-import type {HonoApp} from '@monocf/types'
+import type { Context, Next } from 'hono'
+import type { StatusCode } from 'hono/utils/http-status'
+import type { HonoApp } from '@monocf/types'
 
 /** Caches status: 200 responses for given ttl */
 export function useCache<T extends HonoApp>(ttl: number) {
@@ -13,7 +13,7 @@ export function useCache<T extends HonoApp>(ttl: number) {
     const c = ctx as unknown as Context<HonoApp>
 
     const cache = await caches.open('default')
-    const reqMatcher = new Request(c.req.url, {method: c.req.method})
+    const reqMatcher = new Request(c.req.url, { method: c.req.method })
     const cachedRes = await cache.match(reqMatcher)
     if (cachedRes) {
       return c.newResponse(cachedRes.body, cachedRes)
@@ -62,7 +62,9 @@ export function useCacheByStatus<T extends HonoApp>(options: useCacheByStatusOpt
     const c = ctx as unknown as Context<HonoApp>
 
     const cache = await caches.open('default')
-    const reqMatcher = options.force ? new Request(c.req.url, {method: c.req.method}) : c.req.raw
+    const reqMatcher = options.force
+      ? new Request(c.req.url, { method: c.req.method })
+      : c.req.raw
     const cachedRes = await cache.match(reqMatcher)
     if (cachedRes) {
       return c.newResponse(cachedRes.body, cachedRes)

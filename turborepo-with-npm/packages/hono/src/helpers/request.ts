@@ -3,10 +3,10 @@
  * and modified to fit our needs
  */
 
-import {redactUrl} from './url'
+import { redactUrl } from './url'
 
-import type {Context} from 'hono'
-import type {HonoApp} from '@monocf/types'
+import type { Context } from 'hono'
+import type { HonoApp } from '@monocf/types'
 
 export interface LogDataRequest {
   url: string

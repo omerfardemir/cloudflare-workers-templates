@@ -1,10 +1,12 @@
-import {Primitive, z, ZodLiteral, ZodNever} from 'zod'
+import { Primitive, z, ZodLiteral, ZodNever } from 'zod'
 
 type MappedZodLiterals<T extends readonly Primitive[]> = {
   -readonly [K in keyof T]: ZodLiteral<T[K]>
 }
 
-function createManyUnion<A extends Readonly<[Primitive, Primitive, ...Primitive[]]>>(literals: A) {
+function createManyUnion<A extends Readonly<[Primitive, Primitive, ...Primitive[]]>>(
+  literals: A,
+) {
   return z.union(literals.map((value) => z.literal(value)) as MappedZodLiterals<A>)
 }
 
@@ -15,7 +17,9 @@ export function unionToZod<T extends readonly [Primitive, Primitive, ...Primitiv
 ): z.ZodUnion<MappedZodLiterals<T>>
 export function unionToZod<T extends readonly Primitive[]>(values: T) {
   if (values.length > 1) {
-    return createManyUnion(values as typeof values & [Primitive, Primitive, ...Primitive[]])
+    return createManyUnion(
+      values as typeof values & [Primitive, Primitive, ...Primitive[]],
+    )
   } else if (values.length === 1) {
     return z.literal(values[0])
   } else if (values.length === 0) {

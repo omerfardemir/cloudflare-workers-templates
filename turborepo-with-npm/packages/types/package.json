@@ -2,13 +2,10 @@
   "name": "@monocf/types",
   "version": "0.0.0",
   "type": "module",
-  "main": "./index.js",
-  "types": "./index.ts",
+  "main": "src/index.ts",
   "dependencies": {
-    "typescript": "5.8.3"
-  },
-  "devDependencies": {
-    "@cloudflare/workers-types": "4.20250503.0"
+    "typescript": "5.8.3",
+    "zod": "3.25.76"
   },
   "scripts": {
     "lint": "eslint",

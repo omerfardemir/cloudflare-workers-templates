@@ -17,7 +17,7 @@ export default function generator(plop: PlopTypes.NodePlopAPI): void {
       }
     ],
     // perform actions based on the prompts
-    // Note: The worker depends on the root worker.config.json file for configuration
+    // Note: The worker depends on the root monocf.config.json file for configuration
     actions: (data: any) => {
 			const answers = data as Answers
 			process.chdir(answers.turbo.paths.root)

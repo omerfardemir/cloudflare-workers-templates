@@ -2,14 +2,14 @@
  * This middlewares are copied from https://github.com/jahands/workers-monorepo-template/blob/main/packages/hono-helpers/src/middleware
  * and modified to fit our needs
  */
-import {HTTPException} from 'hono/http-exception'
+import { HTTPException } from 'hono/http-exception'
 
-import {logger} from '../helpers/logger'
+import { logger } from '../helpers/logger'
 
-import type {Context} from 'hono'
-import type {ContentfulStatusCode} from 'hono/utils/http-status'
-import type {ApiError} from '@monocf/types'
-import type {HonoApp} from '@monocf/types'
+import type { Context } from 'hono'
+import type { ContentfulStatusCode } from 'hono/utils/http-status'
+import type { ApiError } from '@monocf/types'
+import type { HonoApp } from '@monocf/types'
 
 /** Handles typical onError hooks */
 export function useOnError<T extends HonoApp>() {
@@ -18,7 +18,7 @@ export function useOnError<T extends HonoApp>() {
 
     if (err instanceof HTTPException) {
       const status = err.getResponse().status as ContentfulStatusCode
-      const body: ApiError = {success: false, error: {message: err.message}}
+      const body: ApiError = { success: false, error: { message: err.message } }
       if (status >= 500) {
         logger.error(err)
       } else if (status === 401) {
@@ -32,7 +32,7 @@ export function useOnError<T extends HonoApp>() {
     return c.json(
       {
         success: false,
-        error: {message: 'internal server error'},
+        error: { message: 'internal server error' },
       } satisfies ApiError,
       500,
     )

@@ -1,5 +1,5 @@
-import {Hono} from 'hono'
-import {App} from './context'
+import { Hono } from 'hono'
+import { App } from './context'
 import {
   useLogger,
   useDefaultCors,

@@ -1,4 +1,4 @@
-import {cors} from 'hono/cors'
+import { cors } from 'hono/cors'
 
 /** Default CORS handler */
 export function useDefaultCors() {

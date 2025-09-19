@@ -1,4 +1,4 @@
-import type {SharedHonoEnv, SharedHonoVariables, HonoApp} from '@monocf/types'
+import type { SharedHonoEnv, SharedHonoVariables, HonoApp } from '@monocf/types'
 
 export type Env = SharedHonoEnv & {
   USER: string

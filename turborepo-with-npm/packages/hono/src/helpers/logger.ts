@@ -3,7 +3,7 @@
  * and modified to fit our needs
  */
 
-import {WorkersLogger} from 'workers-tagged-logger'
+import { WorkersLogger } from 'workers-tagged-logger'
 
 export type LogTagHints = {
   // add common tags here so that they show up as hints
